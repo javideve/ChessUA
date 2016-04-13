@@ -377,6 +377,8 @@
     <None Include="Resources\Tablero\CasillaNS.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Librerias\LibUsbDotNet.dll" />
+    <Content Include="Librerias\LibUsbDotNet.xml" />
     <None Include="Resources\App\Brazo.png" />
     <None Include="Resources\App\Logo.jpg" />
     <None Include="Resources\App\Flecha.gif" />
@@ -402,9 +404,7 @@
     </Content>
     <Content Include="Icono.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Librerias\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
