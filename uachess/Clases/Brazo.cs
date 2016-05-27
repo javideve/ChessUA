@@ -10,9 +10,44 @@ using System.Threading;
 
 namespace UAChess.Clases
 {
+    class Movimiento
+    {
+        private ArticulacionID motor;
+        private int periodo;
+        private int direccion;
+
+        public ArticulacionID Motor
+        {
+            get { return motor; }
+            set { motor = value; }
+        }
+
+        public int Direccion
+        {
+            get { return direccion; }
+            set { direccion = value; }
+        }
+
+        public int Periodo
+        {
+            get { return periodo; }
+            set { periodo = value; }
+        }
+
+        public Movimiento(ArticulacionID art, int dir, int period)
+        {
+            motor = art;
+            direccion = dir;
+            periodo = period;
+        }
+
+    }
+
     class Brazo
     {
+        // Giro a la derecha o hacia abajo
         public const int POSITIVE = 0;
+        // Gitor a la izquierda o hacia arriba
         public const int NEGATIVE = 1;
         
         private const short VENDOR_ID = (short)0x1267;
@@ -95,27 +130,27 @@ namespace UAChess.Clases
             return (isLightOn)? 0x01 : 0x00;
         }
 
-        public void move(ArticulacionID artId, int dir, int period) {
+        public void move(Movimiento mov) {
             int opCode1 = 0x00;
             int opCode2 = 0x00;
 
-            if (artId == ArticulacionID.BASE)
-                opCode2 = (dir == POSITIVE)? 0x01 : 0x02;
-            else if (artId == ArticulacionID.SHOULDER)
-                opCode1 = (dir == POSITIVE)? 0x80 : 0x40;
-            else if (artId == ArticulacionID.ELBOW)
-                opCode1 = (dir == POSITIVE)? 0x20 : 0x10;
-            else if (artId == ArticulacionID.WRIST)
-                opCode1 = (dir == POSITIVE)? 0x08 : 0x04;
+            if (mov.Motor == ArticulacionID.BASE)
+                opCode2 = (mov.Direccion == POSITIVE)? 0x01 : 0x02;
+            else if (mov.Motor == ArticulacionID.SHOULDER)
+                opCode1 = (mov.Direccion == POSITIVE)? 0x80 : 0x40;
+            else if (mov.Motor == ArticulacionID.ELBOW)
+                opCode1 = (mov.Direccion == POSITIVE)? 0x20 : 0x10;
+            else if (mov.Motor == ArticulacionID.WRIST)
+                opCode1 = (mov.Direccion == POSITIVE)? 0x08 : 0x04;
             else
-                Console.WriteLine("Articulacion invalida: " + artId);
+                Console.WriteLine("Articulacion invalida: " + mov.Motor);
 
-            if (period < 0) {
+            if (mov.Periodo < 0)
+            {
                 Console.WriteLine("El tiempo de giro debe ser mayor o igual que 0.");
-                period = 0;
+            } else {
+                sendCommand(opCode1, opCode2, mov.Periodo);
             }
-
-            sendCommand(opCode1, opCode2, period);
         }
 
         private void sendCommand(int opCode1, int opCode2, int period) {
@@ -151,6 +186,59 @@ namespace UAChess.Clases
             try {
                 Thread.Sleep(ms);
             } catch(Exception e) {}
+        }
+
+        public void moveToRow(char row)
+        {
+            int direccion, contraria, time = -1;
+
+            switch (row)
+            {
+                case 'A':
+                case 'H':
+                    time = 3000;
+                    break;
+                case 'B':
+                case 'G':
+                    time = 2000;
+                    break;
+                case 'C':
+                case 'F':
+                    time = 1400;
+                    break;
+                case 'D':
+                case 'E':
+                    time = 800;
+                    break;
+            }
+
+            if (row == 'A' || row == 'B' || row == 'C' || row == 'D')
+            {
+                direccion = Brazo.POSITIVE;
+                contraria = Brazo.NEGATIVE;
+            }
+            else
+            {
+                direccion = Brazo.NEGATIVE;
+                contraria = Brazo.POSITIVE;
+            }
+
+            Movimiento mov = new Movimiento(ArticulacionID.BASE, direccion, time);
+            move(mov);
+            wait(400);
+            mov.Direccion = contraria;
+            mov.Periodo = mov.Periodo - Convert.ToInt32(mov.Periodo * 0.01);
+            move(mov);
+        }
+
+        public void removePiece()
+        {
+            Movimiento mov = new Movimiento(ArticulacionID.BASE, Brazo.POSITIVE, 5000);
+            move(mov);
+            wait(400);
+            mov.Direccion = Brazo.NEGATIVE;
+            mov.Periodo = mov.Periodo - Convert.ToInt32(mov.Periodo * 0.01);
+            move(mov);
         }
     }
 }

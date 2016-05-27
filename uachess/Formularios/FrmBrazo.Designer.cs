@@ -47,6 +47,11 @@
             this.NSBtnRCerrar = new NSButton();
             this.NSBtnPAbrir = new NSButton();
             this.PbxBrazo = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.nsButton1 = new NSButton();
+            this.nsButton2 = new NSButton();
+            this.nsButton3 = new NSButton();
+            this.nsButton4 = new NSButton();
             this.NSTheme.SuspendLayout();
             this.NSGbpCalibrado.SuspendLayout();
             this.NSGpbTest.SuspendLayout();
@@ -56,6 +61,7 @@
             this.NSGbpA1.SuspendLayout();
             this.NSGbpP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxBrazo)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // NSTheme
@@ -168,6 +174,7 @@
             // 
             // NSGpbTest
             // 
+            this.NSGpbTest.Controls.Add(this.panel1);
             this.NSGpbTest.Controls.Add(this.LblR);
             this.NSGpbTest.Controls.Add(this.LblA3);
             this.NSGpbTest.Controls.Add(this.LblA2);
@@ -436,6 +443,53 @@
             this.PbxBrazo.TabStop = false;
             this.PbxBrazo.Tag = "";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.nsButton4);
+            this.panel1.Controls.Add(this.nsButton3);
+            this.panel1.Controls.Add(this.nsButton2);
+            this.panel1.Controls.Add(this.nsButton1);
+            this.panel1.Location = new System.Drawing.Point(27, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 5;
+            // 
+            // nsButton1
+            // 
+            this.nsButton1.Location = new System.Drawing.Point(10, 21);
+            this.nsButton1.Name = "nsButton1";
+            this.nsButton1.Size = new System.Drawing.Size(75, 23);
+            this.nsButton1.TabIndex = 0;
+            this.nsButton1.Text = "A y H";
+            this.nsButton1.Click += new System.EventHandler(this.nsButton1_Click);
+            // 
+            // nsButton2
+            // 
+            this.nsButton2.Location = new System.Drawing.Point(101, 21);
+            this.nsButton2.Name = "nsButton2";
+            this.nsButton2.Size = new System.Drawing.Size(75, 23);
+            this.nsButton2.TabIndex = 1;
+            this.nsButton2.Text = "B y G";
+            this.nsButton2.Click += new System.EventHandler(this.nsButton2_Click);
+            // 
+            // nsButton3
+            // 
+            this.nsButton3.Location = new System.Drawing.Point(10, 53);
+            this.nsButton3.Name = "nsButton3";
+            this.nsButton3.Size = new System.Drawing.Size(75, 23);
+            this.nsButton3.TabIndex = 2;
+            this.nsButton3.Text = "C y F";
+            this.nsButton3.Click += new System.EventHandler(this.nsButton3_Click);
+            // 
+            // nsButton4
+            // 
+            this.nsButton4.Location = new System.Drawing.Point(101, 50);
+            this.nsButton4.Name = "nsButton4";
+            this.nsButton4.Size = new System.Drawing.Size(75, 23);
+            this.nsButton4.TabIndex = 3;
+            this.nsButton4.Text = "D y E";
+            this.nsButton4.Click += new System.EventHandler(this.nsButton4_Click);
+            // 
             // FrmBrazo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,6 +513,7 @@
             this.NSGbpA1.ResumeLayout(false);
             this.NSGbpP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxBrazo)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -494,5 +549,10 @@
         private NSButton NSBtnCalibrar;
         private System.Windows.Forms.Label LblAdvertencia;
         private System.Windows.Forms.Label LblCerrar;
+        private System.Windows.Forms.Panel panel1;
+        private NSButton nsButton4;
+        private NSButton nsButton3;
+        private NSButton nsButton2;
+        private NSButton nsButton1;
     }
 }
