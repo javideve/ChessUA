@@ -26,6 +26,20 @@
             this.NSCmbCalibrado = new NSComboBox();
             this.NSLblTitulo = new NSLabel();
             this.NSGpbTest = new NSGroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CBMuñecaDir = new System.Windows.Forms.CheckBox();
+            this.CBCodoDir = new System.Windows.Forms.CheckBox();
+            this.CBHombroDir = new System.Windows.Forms.CheckBox();
+            this.CBBaseDir = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TBMuñecaTime = new System.Windows.Forms.TextBox();
+            this.TBCodoTime = new System.Windows.Forms.TextBox();
+            this.TBHombroTime = new System.Windows.Forms.TextBox();
+            this.TBBaseTime = new System.Windows.Forms.TextBox();
+            this.nsButton1 = new NSButton();
             this.LblR = new System.Windows.Forms.Label();
             this.LblA3 = new System.Windows.Forms.Label();
             this.LblA2 = new System.Windows.Forms.Label();
@@ -47,21 +61,16 @@
             this.NSBtnRCerrar = new NSButton();
             this.NSBtnPAbrir = new NSButton();
             this.PbxBrazo = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.nsButton1 = new NSButton();
-            this.nsButton2 = new NSButton();
-            this.nsButton3 = new NSButton();
-            this.nsButton4 = new NSButton();
             this.NSTheme.SuspendLayout();
             this.NSGbpCalibrado.SuspendLayout();
             this.NSGpbTest.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.NSGbpR.SuspendLayout();
             this.NSGbpA3.SuspendLayout();
             this.NSGbpA2.SuspendLayout();
             this.NSGbpA1.SuspendLayout();
             this.NSGbpP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxBrazo)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // NSTheme
@@ -194,6 +203,147 @@
             this.NSGpbTest.TabIndex = 0;
             this.NSGpbTest.Text = "Test";
             this.NSGpbTest.Title = "Test";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.CBMuñecaDir);
+            this.panel1.Controls.Add(this.CBCodoDir);
+            this.panel1.Controls.Add(this.CBHombroDir);
+            this.panel1.Controls.Add(this.CBBaseDir);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.TBMuñecaTime);
+            this.panel1.Controls.Add(this.TBCodoTime);
+            this.panel1.Controls.Add(this.TBHombroTime);
+            this.panel1.Controls.Add(this.TBBaseTime);
+            this.panel1.Controls.Add(this.nsButton1);
+            this.panel1.Location = new System.Drawing.Point(6, 147);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(224, 200);
+            this.panel1.TabIndex = 5;
+            // 
+            // CBMuñecaDir
+            // 
+            this.CBMuñecaDir.AutoSize = true;
+            this.CBMuñecaDir.Location = new System.Drawing.Point(79, 104);
+            this.CBMuñecaDir.Name = "CBMuñecaDir";
+            this.CBMuñecaDir.Size = new System.Drawing.Size(76, 17);
+            this.CBMuñecaDir.TabIndex = 16;
+            this.CBMuñecaDir.Text = "Negativo";
+            this.CBMuñecaDir.UseVisualStyleBackColor = true;
+            // 
+            // CBCodoDir
+            // 
+            this.CBCodoDir.AutoSize = true;
+            this.CBCodoDir.Location = new System.Drawing.Point(79, 79);
+            this.CBCodoDir.Name = "CBCodoDir";
+            this.CBCodoDir.Size = new System.Drawing.Size(76, 17);
+            this.CBCodoDir.TabIndex = 15;
+            this.CBCodoDir.Text = "Negativo";
+            this.CBCodoDir.UseVisualStyleBackColor = true;
+            // 
+            // CBHombroDir
+            // 
+            this.CBHombroDir.AutoSize = true;
+            this.CBHombroDir.Location = new System.Drawing.Point(79, 53);
+            this.CBHombroDir.Name = "CBHombroDir";
+            this.CBHombroDir.Size = new System.Drawing.Size(76, 17);
+            this.CBHombroDir.TabIndex = 14;
+            this.CBHombroDir.Text = "Negativo";
+            this.CBHombroDir.UseVisualStyleBackColor = true;
+            // 
+            // CBBaseDir
+            // 
+            this.CBBaseDir.AutoSize = true;
+            this.CBBaseDir.Location = new System.Drawing.Point(79, 25);
+            this.CBBaseDir.Name = "CBBaseDir";
+            this.CBBaseDir.Size = new System.Drawing.Size(76, 17);
+            this.CBBaseDir.TabIndex = 5;
+            this.CBBaseDir.Text = "Negativo";
+            this.CBBaseDir.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Muñeca";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Codo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Hombro";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Base";
+            // 
+            // TBMuñecaTime
+            // 
+            this.TBMuñecaTime.Location = new System.Drawing.Point(161, 103);
+            this.TBMuñecaTime.Name = "TBMuñecaTime";
+            this.TBMuñecaTime.Size = new System.Drawing.Size(60, 20);
+            this.TBMuñecaTime.TabIndex = 10;
+            this.TBMuñecaTime.Text = "0";
+            this.TBMuñecaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // TBCodoTime
+            // 
+            this.TBCodoTime.Location = new System.Drawing.Point(161, 77);
+            this.TBCodoTime.Name = "TBCodoTime";
+            this.TBCodoTime.Size = new System.Drawing.Size(60, 20);
+            this.TBCodoTime.TabIndex = 9;
+            this.TBCodoTime.Text = "0";
+            this.TBCodoTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // TBHombroTime
+            // 
+            this.TBHombroTime.Location = new System.Drawing.Point(161, 51);
+            this.TBHombroTime.Name = "TBHombroTime";
+            this.TBHombroTime.Size = new System.Drawing.Size(60, 20);
+            this.TBHombroTime.TabIndex = 8;
+            this.TBHombroTime.Text = "0";
+            this.TBHombroTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // TBBaseTime
+            // 
+            this.TBBaseTime.Location = new System.Drawing.Point(161, 23);
+            this.TBBaseTime.Name = "TBBaseTime";
+            this.TBBaseTime.Size = new System.Drawing.Size(60, 20);
+            this.TBBaseTime.TabIndex = 7;
+            this.TBBaseTime.Text = "0";
+            this.TBBaseTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // nsButton1
+            // 
+            this.nsButton1.Location = new System.Drawing.Point(65, 164);
+            this.nsButton1.Name = "nsButton1";
+            this.nsButton1.Size = new System.Drawing.Size(75, 23);
+            this.nsButton1.TabIndex = 0;
+            this.nsButton1.Text = "Send";
+            this.nsButton1.Click += new System.EventHandler(this.nsButton1_Click);
             // 
             // LblR
             // 
@@ -443,53 +593,6 @@
             this.PbxBrazo.TabStop = false;
             this.PbxBrazo.Tag = "";
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.nsButton4);
-            this.panel1.Controls.Add(this.nsButton3);
-            this.panel1.Controls.Add(this.nsButton2);
-            this.panel1.Controls.Add(this.nsButton1);
-            this.panel1.Location = new System.Drawing.Point(27, 65);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 5;
-            // 
-            // nsButton1
-            // 
-            this.nsButton1.Location = new System.Drawing.Point(10, 21);
-            this.nsButton1.Name = "nsButton1";
-            this.nsButton1.Size = new System.Drawing.Size(75, 23);
-            this.nsButton1.TabIndex = 0;
-            this.nsButton1.Text = "A y H";
-            this.nsButton1.Click += new System.EventHandler(this.nsButton1_Click);
-            // 
-            // nsButton2
-            // 
-            this.nsButton2.Location = new System.Drawing.Point(101, 21);
-            this.nsButton2.Name = "nsButton2";
-            this.nsButton2.Size = new System.Drawing.Size(75, 23);
-            this.nsButton2.TabIndex = 1;
-            this.nsButton2.Text = "B y G";
-            this.nsButton2.Click += new System.EventHandler(this.nsButton2_Click);
-            // 
-            // nsButton3
-            // 
-            this.nsButton3.Location = new System.Drawing.Point(10, 53);
-            this.nsButton3.Name = "nsButton3";
-            this.nsButton3.Size = new System.Drawing.Size(75, 23);
-            this.nsButton3.TabIndex = 2;
-            this.nsButton3.Text = "C y F";
-            this.nsButton3.Click += new System.EventHandler(this.nsButton3_Click);
-            // 
-            // nsButton4
-            // 
-            this.nsButton4.Location = new System.Drawing.Point(101, 50);
-            this.nsButton4.Name = "nsButton4";
-            this.nsButton4.Size = new System.Drawing.Size(75, 23);
-            this.nsButton4.TabIndex = 3;
-            this.nsButton4.Text = "D y E";
-            this.nsButton4.Click += new System.EventHandler(this.nsButton4_Click);
-            // 
             // FrmBrazo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,13 +610,14 @@
             this.NSGbpCalibrado.PerformLayout();
             this.NSGpbTest.ResumeLayout(false);
             this.NSGpbTest.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.NSGbpR.ResumeLayout(false);
             this.NSGbpA3.ResumeLayout(false);
             this.NSGbpA2.ResumeLayout(false);
             this.NSGbpA1.ResumeLayout(false);
             this.NSGbpP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxBrazo)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -550,9 +654,18 @@
         private System.Windows.Forms.Label LblAdvertencia;
         private System.Windows.Forms.Label LblCerrar;
         private System.Windows.Forms.Panel panel1;
-        private NSButton nsButton4;
-        private NSButton nsButton3;
-        private NSButton nsButton2;
         private NSButton nsButton1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TBMuñecaTime;
+        private System.Windows.Forms.TextBox TBCodoTime;
+        private System.Windows.Forms.TextBox TBHombroTime;
+        private System.Windows.Forms.TextBox TBBaseTime;
+        private System.Windows.Forms.CheckBox CBMuñecaDir;
+        private System.Windows.Forms.CheckBox CBCodoDir;
+        private System.Windows.Forms.CheckBox CBHombroDir;
+        private System.Windows.Forms.CheckBox CBBaseDir;
     }
 }

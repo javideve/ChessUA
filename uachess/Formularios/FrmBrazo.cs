@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using UAChess.Clases;
+using System.Collections;
 
 namespace UAChess
 {
@@ -56,14 +57,12 @@ namespace UAChess
 
         private void NSBtnA1Arriba_Click(object sender, EventArgs e)
         {
-            //arm.move(new Movimiento(ArticulacionID.WRIST, Brazo.NEGATIVE, TIME));
-            //arm.removePiece();
-            
+            arm.move(new Movimiento(ArticulacionID.WRIST, Brazo.NEGATIVE, TIME));
         }
 
         private void NSBtnA1Abajo_Click(object sender, EventArgs e)
         {
-            //arm.move(new Movimiento(ArticulacionID.WRIST, Brazo.POSITIVE, TIME));
+            arm.move(new Movimiento(ArticulacionID.WRIST, Brazo.POSITIVE, TIME));
         }
 
         private void NSBtnPAbrir_Click(object sender, EventArgs e)
@@ -73,13 +72,38 @@ namespace UAChess
 
         private void NSBtnRCerrar_Click(object sender, EventArgs e)
         {
-            arm.openGripper(true);
+            //arm.openGripper(false);
+            arm.removePiece();
         }
 
         private void nsButton1_Click(object sender, EventArgs e)
         {
-            arm.moveToRow('A');
-            arm.moveToRow('H');
+            Movimiento basee, shoulder, elbow, wrist;
+            int baseDir, hombroDir, codoDir, munecaDir, baseTime, hombroTime, codoTime, munecaTime;
+            baseDir = (CBBaseDir.Checked) ? Brazo.NEGATIVE : Brazo.POSITIVE;
+            hombroDir = (CBHombroDir.Checked) ? Brazo.NEGATIVE : Brazo.POSITIVE;
+            codoDir = (CBCodoDir.Checked) ? Brazo.NEGATIVE : Brazo.POSITIVE;
+            munecaDir = (CBMuñecaDir.Checked) ? Brazo.NEGATIVE : Brazo.POSITIVE;
+            baseTime = int.Parse(TBBaseTime.Text);
+            hombroTime = int.Parse(TBHombroTime.Text);
+            codoTime = int.Parse(TBCodoTime.Text);
+            munecaTime = int.Parse(TBMuñecaTime.Text);
+
+            
+            basee = new Movimiento(ArticulacionID.BASE, baseDir, baseTime);
+            shoulder = new Movimiento(ArticulacionID.SHOULDER, hombroDir, hombroTime);
+            elbow = new Movimiento(ArticulacionID.ELBOW, codoDir, codoTime);
+            wrist = new Movimiento(ArticulacionID.WRIST, munecaDir, munecaTime);
+
+            ArrayList movements;
+            movements = new ArrayList();
+
+            movements.Add(basee);
+            movements.Add(shoulder);
+            movements.Add(elbow);
+            movements.Add(wrist);
+
+            arm.moveTo(movements);
         }
 
         private void nsButton2_Click(object sender, EventArgs e)

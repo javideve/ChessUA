@@ -7,6 +7,8 @@ using LibUsbDotNet.Main;
 using System.Windows;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Collections;
+using System.Windows.Forms;
 
 namespace UAChess.Clases
 {
@@ -46,9 +48,9 @@ namespace UAChess.Clases
     class Brazo
     {
         // Giro a la derecha o hacia abajo
-        public const int POSITIVE = 0;
+        public const int POSITIVE = 1;
         // Gitor a la izquierda o hacia arriba
-        public const int NEGATIVE = 1;
+        public const int NEGATIVE = -1;
         
         private const short VENDOR_ID = (short)0x1267;
         private const short PRODUCT_ID = (short)0x0;
@@ -57,6 +59,7 @@ namespace UAChess.Clases
         private UsbDevice dev = null;
 
         private bool isLightOn = false;
+        private bool isGripperOpen = true;
         
         public Brazo() {
             dev = UsbDevice.OpenUsbDevice(new UsbDeviceFinder(VENDOR_ID, PRODUCT_ID));
@@ -233,12 +236,120 @@ namespace UAChess.Clases
 
         public void removePiece()
         {
-            Movimiento mov = new Movimiento(ArticulacionID.BASE, Brazo.POSITIVE, 5000);
-            move(mov);
-            wait(400);
-            mov.Direccion = Brazo.NEGATIVE;
-            mov.Periodo = mov.Periodo - Convert.ToInt32(mov.Periodo * 0.01);
-            move(mov);
+            Movimiento basee, shoulder, elbow, wrist;
+            basee = new Movimiento(ArticulacionID.BASE, Brazo.POSITIVE, 6000);
+            shoulder = new Movimiento(ArticulacionID.SHOULDER, Brazo.POSITIVE, 0);
+            elbow = new Movimiento(ArticulacionID.ELBOW, Brazo.POSITIVE, 2000);
+            wrist = new Movimiento(ArticulacionID.WRIST, Brazo.POSITIVE, 0);
+            ArrayList movements = new ArrayList();
+            movements.Add(basee);
+            movements.Add(shoulder);
+            movements.Add(elbow);
+            movements.Add(wrist);
+
+            moveTo(movements, false, true);
+        }
+
+        public void moveTo(ArrayList movements, bool grab = false, bool release = false)
+        {   
+            Movimiento reverseMov;
+            ArrayList reverse;
+            reverse = new ArrayList();
+
+            foreach (Movimiento mov in movements)
+            {
+                move(mov);
+                reverseMov = new Movimiento(mov.Motor, mov.Direccion * -1, mov.Periodo);
+                reverse.Add(reverseMov);
+            }
+
+            reverse.Reverse();
+
+            string message = "Movimiento finalizado. Clica 'Yes' para cerrar pinza, 'No' para abrirla y 'Cancel' para no hacer nada";
+            string caption = "Message";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+            DialogResult result;
+
+            result = MessageBox.Show(message, caption, buttons);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                openGripper(false);
+            }
+            else if (result == System.Windows.Forms.DialogResult.No || release)
+            {
+                openGripper(false);
+                openGripper(true);
+            }
+
+            message = "Movimiento completado. ¿Volver?";
+            caption = "Message";
+            buttons = MessageBoxButtons.OK;
+
+            result = MessageBox.Show(message, caption, buttons);
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (Movimiento mov in reverse)
+                {
+                    move(mov);
+                }
+
+            }
+        }
+
+        public void doMovement(string square)
+        {
+            Movimiento basee, shoulder, elbow, wrist;
+            int baseDir, hombroDir, codoDir, munecaDir, baseTime, hombroTime, codoTime, munecaTime;
+
+            switch (square)
+            {
+                case "a8":
+                    baseDir = Brazo.POSITIVE;
+                    hombroDir = Brazo.NEGATIVE;
+                    codoDir = Brazo.POSITIVE;
+                    munecaDir = Brazo.POSITIVE;
+                    baseTime = 3600;
+                    hombroTime = 2500;
+                    codoTime = 3600;
+                    munecaTime = 1600;
+                    break;
+                case "a7":
+                    baseDir = Brazo.POSITIVE;
+                    hombroDir = Brazo.NEGATIVE;
+                    codoDir = Brazo.POSITIVE;
+                    munecaDir = Brazo.POSITIVE;
+                    baseTime = 3100;
+                    hombroTime = 100;
+                    codoTime = 1400;
+                    munecaTime = 2200;
+                    break;
+                case "a6":
+                    baseDir = Brazo.POSITIVE;
+                    hombroDir = Brazo.NEGATIVE;
+                    codoDir = Brazo.POSITIVE;
+                    munecaDir = Brazo.POSITIVE;
+                    baseTime = 2600;
+                    hombroTime = 400;
+                    codoTime = 2200;
+                    munecaTime = 0;
+                    break;
+                default:
+                    return;
+            }
+
+            basee = new Movimiento(ArticulacionID.BASE, baseDir, baseTime);
+            shoulder = new Movimiento(ArticulacionID.SHOULDER, hombroDir, hombroTime);
+            elbow = new Movimiento(ArticulacionID.ELBOW, codoDir, codoTime);
+            wrist = new Movimiento(ArticulacionID.WRIST, munecaDir, munecaTime);
+            ArrayList movements = new ArrayList();
+            movements.Add(basee);
+            movements.Add(shoulder);
+            movements.Add(elbow);
+            movements.Add(wrist);
+
+            moveTo(movements);
         }
     }
 }
